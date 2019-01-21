@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=">
-    <title>Bookers</title>
   </head>
 
   <body>
+    <div id="slidemenu">
+      <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" style="background-color:#000000">
+        <div class="navbar-header navbar-left">
+          <a class="navbar-brand" style="color:#FFF">Bookers</a>
+        </div>
 
-    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" style="background-color:#000000">
-      <div class="navbar-header navbar-left">
-        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-Example">
-        </button>
-          <a class="navbar-brand" style="color:#FFF">Bookers
-          </a>
-      </div>
+        <div class="slidemenu collapse navbar-collapse" id="navbarExample" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li class=""><%= link_to " Home", "#", class: "glyphicon glyphicon-home" %></li>
+              <li class=""><%= link_to " Users", "#", class: "glyphicon glyphicon-user" %></li>
+              <li class=""><%= link_to " Books", "#", class: "glyphicon glyphicon-book" %></li>
+              <li class=""><%= link_to " logout", destroy_user_session_path, class: "glyphicon glyphicon-log-in" %></li>
 
-<!-- ここにそのまま挿入 -->
+            <% else %>
+              <li class=""><%= link_to " Home", "#", class: "glyphicon glyphicon-home" %></li>
+              <li class=""><%= link_to " About", "#", class: "glyphicon glyphicon-link" %></li>
+              <li class=""><%= link_to " sign up", new_user_registration_path, class: "glyphicon glyphicon-edit" %></li>
+              <li class=""><%= link_to " login", new_user_session_path, class: "glyphicon glyphicon-log-in" %></li>
 
-      <span style="margin-top:70px"></span>
-<!--
-    <div class="header" id="header">
-      <nav class="navbar navbar-main navbar-shadow" role="navigation" id="slide-nav">
-        <div class="container relative">
-          <div class="navbar-header">
-            <a class="navbar-logo" href="/">
-              <h4>Bookers</h4>
- -->
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-<!--             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button> -->
-
-    </nav>
-
-    <%= yield %>
+    <div style="margin-top:64px">
+      <%= yield %>
+    </div>
 
     <footer>
       <div class="container">
